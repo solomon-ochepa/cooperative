@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect()->route('dashboard');  //view('welcome');
-});
+})->name('home');
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['verified'])->group(function () {

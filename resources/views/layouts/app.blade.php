@@ -52,18 +52,22 @@
 
         {{ $slot }}
 
-        <x-themes.app.bottom-menu />
-        <x-themes.app.sidebar />
+        @auth
+            <x-themes.app.bottom-menu />
+            <x-themes.app.sidebar />
+        @endauth
         <x-themes.app.add-to-home-screen />
         <x-themes.app.cookies />
 
         {{-- Global modals --}}
         @pushonce('modals')
-            <!-- Deposit Action -->
-            <livewire:account::deposit />
+            @auth
+                <!-- Deposit Action -->
+                <livewire:account::deposit />
 
-            <!-- Withdraw Action -->
-            <livewire:account::withdraw />
+                <!-- Withdraw Action -->
+                <livewire:account::withdraw />
+            @endauth
         @endpushonce
 
         <!-- Modals -->
