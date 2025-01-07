@@ -1,4 +1,12 @@
 <x-guest-layout>
+    @slot('title', 'Login')
+    <x-themes.app.header class="no-border transparent position-absolute">
+        @slot('back', 'home')
+        @slot('title', '')
+        @slot('right')
+        @endslot
+    </x-themes.app.header>
+
     <div id="appCapsule">
         <div class="section mt-2 text-center">
             <h1>Log in</h1>
@@ -56,7 +64,7 @@
                 <div class="form-links mt-2">
                     <div>
                         @if (Route::has('register'))
-                            <a href="app-register.html">{{ __('Create an account') }}</a>
+                            <a href="{{ route('register') }}">{{ __('Create an account') }}</a>
                         @endif
                     </div>
 
