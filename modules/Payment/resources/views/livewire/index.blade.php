@@ -1,7 +1,7 @@
 <div id="appCapsule">
-    {{-- @slot('page_title', 'Payment Methods') --}}
+    {{-- @slot('title', 'Payment Methods') --}}
     <x-themes.app.header class="bg-primary text-light">
-        @slot('page_title', 'Payment Methods')
+        @slot('title', 'Payment Methods')
         @slot('back', '')
         @slot('right')
             <a class="headerButton" href="#">

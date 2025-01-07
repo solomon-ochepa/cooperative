@@ -6,7 +6,7 @@
         <meta content="width=device-width, initial-scale=1" name="viewport">
         <meta content="{{ csrf_token() }}" name="csrf-token">
 
-        <title>{{ (isset($page_title) ? $page_title . ' - ' : null) . config('app.name', 'Laravel') }}</title>
+        <title>{{ (isset($title) ? $title . ' - ' : null) . config('app.name', 'Laravel') }}</title>
 
         <meta content="{{ $description ?? config('app.name') }}" name="description">
         <meta content="{{ $keywords ?? config('app.name') }}" name="keywords" />

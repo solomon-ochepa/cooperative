@@ -1,7 +1,7 @@
 <x-app-layout>
-    @slot('page_title', 'Settings')
+    @slot('title', 'Settings')
     <x-themes.app.header class="bg-primary text-light">
-        @slot('page_title', 'Settings')
+        @slot('title', 'Settings')
         @slot('back', '')
         @slot('right')
             <a class="headerButton" href="#">

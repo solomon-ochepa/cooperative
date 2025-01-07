@@ -1,8 +1,8 @@
 <x-app-layout>
-    @slot('page_title', 'Administrator')
+    @slot('title', 'Administrator')
     <x-themes.app.header class="bg-primary text-light">
         @slot('back', 'settings')
-        @slot('page_title')
+        @slot('title')
             <ion-icon name="desktop"></ion-icon>
             <span>Administrator</span>
         @endslot

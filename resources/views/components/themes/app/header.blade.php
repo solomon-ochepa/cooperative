@@ -12,7 +12,7 @@
     </div>
 
     <div class="pageTitle">
-        {!! $page_title ?? null !!}
+        {!! $title ?? null !!}
     </div>
 
     <div class="right">

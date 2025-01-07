@@ -1,7 +1,7 @@
 <x-app-layout>
-    @slot('page_title', 'Dashboard')
+    @slot('title', 'Dashboard')
     <x-themes.app.header class="bg-primary text-light">
-        @slot('page_title', config('app.name'))
+        @slot('title', config('app.name'))
         @slot('right')
             <a class="headerButton" href="#">
                 <ion-icon class="icon" name="notifications-outline"></ion-icon>
