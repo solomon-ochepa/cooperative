@@ -72,7 +72,7 @@ class Create extends Component
         $this->dispatch('refresh');
     }
 
-    private function account(int $number, string $bank)
+    private function account(string $number, string $bank)
     {
         $nuban = new Nuban;
 
@@ -88,7 +88,7 @@ class Create extends Component
                 ]);
             }
 
-            if ($data['status']) {
+            if (isset($data['status']) and $data['status']) {
                 Cache::add($cache_key, $data, now()->tomorrow());
             } else {
                 Cache::add($cache_key, $data, now()->addSeconds(10));
