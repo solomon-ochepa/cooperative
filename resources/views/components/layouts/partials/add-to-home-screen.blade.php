@@ -13,7 +13,7 @@
                 <div class="action-sheet-content text-center">
                     <div class="mb-1">
                         <img alt="image" class="imaged w64 mb-2"
-                            src="{{ asset('assets/app') }}/img/icon/192x192.png">
+                            src="{{ asset('assets/img/icon/192x192.png') }}">
                     </div>
                     <div>
                         Install <strong>{{ config('app.name') }}</strong> on your iPhone's home screen.
@@ -45,7 +45,7 @@
             <div class="modal-body">
                 <div class="action-sheet-content text-center">
                     <div class="mb-1">
-                        <img alt="image" class="imaged w64 mb-2" src="{{ asset('assets/app') }}/img/icon/192x192.png">
+                        <img alt="image" class="imaged w64 mb-2" src="{{ asset('assets/img/icon/192x192.png') }}">
                     </div>
                     <div>
                         Install <strong>{{ config('app.name') }}</strong> on your Android's home screen.

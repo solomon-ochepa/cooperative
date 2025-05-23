@@ -7,7 +7,7 @@ FROM php:8.3-apache AS base
 # You can see a list of required extensions for Laravel here: https://laravel.com/docs/11.x/deployment#server-requirements
 
 # Define the build arguments with default values
-ARG PHPIZE_DEPS="libpng-dev libjpeg-dev libfreetype6-dev libicu-dev libzip-dev vim git zip unzip jq   libssl-dev wget sudo lsb-release systemctl default-mysql-client nodejs npm supervisor"
+ARG PHPIZE_DEPS="libpng-dev libjpeg-dev libfreetype6-dev libicu-dev libzip-dev vim git zip unzip jq nodejs npm"
 ARG PHP_EXTS="pdo pdo_mysql mysqli zip ftp"
 ARG PHP_PECL_EXTS=""
 

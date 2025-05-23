@@ -16,32 +16,17 @@ class UserSeeder extends Seeder
     {
         $password = 'password';
 
-        $users = [
-            [
-                'first_name' => 'Admin',
-                'last_name' => 'User',
-                'username' => 'admin',
-                'phone' => '+2340000000000',
-                'email' => 'admin@example.com',
-                'password' => $password,
-            ],
-            [
-                'first_name' => 'Demo',
-                'last_name' => 'User',
-                'username' => 'demo',
-                'phone' => '+2340000000001',
-                'email' => 'demo@example.com',
-                'password' => $password,
-            ],
+        $data = [
+            'first_name' => 'Demo',
+            'last_name' => 'User',
+            'username' => 'demo',
+            'phone' => '+2340000000001',
+            'email' => 'demo@example.com',
+            'password' => $password,
         ];
 
-        foreach ($users as $user) {
-            $user = User::firstOrCreate(Arr::only($user, ['username', 'phone', 'email']), $user);
+        $user = User::firstOrCreate(Arr::only($data, ['username', 'phone', 'email']), $data);
 
-            $user->assignRole((Role::findOrCreate('user')));
-            if ($user->username === 'admin') {
-                $user->assignRole((Role::findOrCreate('admin')));
-            }
-        }
+        $user->assignRole((Role::findOrCreate('user')));
     }
 }

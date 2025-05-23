@@ -4,25 +4,31 @@ namespace Modules\User\app\Livewire\Settings;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Validation\Rule;
 use Livewire\Component;
+use Modules\User\app\Livewire\Settings\Forms\ProfileForm;
 use Modules\User\App\Models\User;
 
 class Profile extends Component
 {
+    public ProfileForm $form;
+
     public User $user;
 
-    public string $name = '';
-
-    public string $email = '';
-
-    /**
-     * Mount the component.
-     */
-    public function mount(): void
+    public function mount()
     {
-        $this->name = Auth::user()->name;
-        $this->email = Auth::user()->email;
+        $this->user = Auth::user();
+
+        $this->form->fill($this->user);
+    }
+
+    public function render()
+    {
+        return view('user::livewire.settings.profile', [
+            'title' => __('Profile'),
+        ])->layout('components.layouts.app', [
+            'title' => __('Profile'),
+            'description' => __('Update your profile information.'),
+        ]);
     }
 
     /**
@@ -30,30 +36,9 @@ class Profile extends Component
      */
     public function updateProfileInformation(): void
     {
-        $user = Auth::user();
+        $this->form->update();
 
-        $validated = $this->validate([
-            'name' => ['required', 'string', 'max:255'],
-
-            'email' => [
-                'required',
-                'string',
-                'lowercase',
-                'email',
-                'max:255',
-                Rule::unique(User::class)->ignore($user->id),
-            ],
-        ]);
-
-        $user->fill($validated);
-
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-        }
-
-        $user->save();
-
-        $this->dispatch('profile-updated', name: $user->name);
+        $this->dispatch('profile-updated', name: $this->user->name);
     }
 
     /**

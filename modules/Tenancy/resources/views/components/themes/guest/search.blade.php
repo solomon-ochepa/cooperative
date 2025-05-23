@@ -45,7 +45,7 @@
                                         href="apps/e-commerce/landing/product-details.html">
                                         <div class="file-thumbnail me-2"><img alt=""
                                                 class="h-100 w-100 fit-cover rounded-3"
-                                                src="{{ asset('') }}assets/img/products/60x60/3.png" /></div>
+                                                src="{{ asset('assets/img/products/60x60/3.png') }}" /></div>
                                         <div class="flex-1">
                                             <h6 class="text-1000 title mb-0">MacBook Air - 13″</h6>
                                             <p class="fs--2 d-flex text-700 mb-0"><span class="fw-medium text-600">8GB
@@ -56,7 +56,7 @@
                                     <a class="dropdown-item d-flex align-items-center py-2"
                                         href="apps/e-commerce/landing/product-details.html">
                                         <div class="file-thumbnail me-2"><img alt="" class="img-fluid"
-                                                src="{{ asset('') }}assets/img/products/60x60/3.png" /></div>
+                                                src="{{ asset('assets/img/products/60x60/3.png') }}" /></div>
                                         <div class="flex-1">
                                             <h6 class="text-1000 title mb-0">MacBook Pro - 13″</h6>
                                             <p class="fs--2 d-flex text-700 mb-0"><span
@@ -122,7 +122,7 @@
                                         href="pages/members.html">
                                         <div class="avatar avatar-l status-online text-900 me-2">
                                             <img alt="" class="rounded-circle"
-                                                src="{{ asset('') }}assets/img/team/40x40/10.webp" />
+                                                src="{{ asset('assets/img/team/40x40/10.webp') }}" />
                                         </div>
                                         <div class="flex-1">
                                             <h6 class="text-1000 title mb-0">Carry Anna</h6>
@@ -132,7 +132,7 @@
                                     <a class="dropdown-item d-flex align-items-center py-2" href="pages/members.html">
                                         <div class="avatar avatar-l text-900 me-2">
                                             <img alt="" class="rounded-circle"
-                                                src="{{ asset('') }}assets/img/team/40x40/12.webp" />
+                                                src="{{ asset('assets/img/team/40x40/12.webp') }}" />
                                         </div>
                                         <div class="flex-1">
                                             <h6 class="text-1000 title mb-0">John Smith</h6>

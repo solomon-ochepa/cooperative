@@ -9,7 +9,7 @@
             <a class="item" href="#">
                 <div class="detail">
                     <img alt="img" class="image-block imaged w48"
-                        src="{{ asset('assets/app') }}/img/sample/brand/1.jpg">
+                        src="{{ asset('assets/img/sample/brand/1.jpg') }}">
                     <div>
                         <strong>{{ $transaction->type }}</strong>
                         <p>{{ $transaction->description }}</p>

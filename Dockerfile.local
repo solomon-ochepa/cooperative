@@ -29,13 +29,8 @@ RUN if [ "$APP_ENV" = "local-dev" ]; then \
 # Dependencies
 ################################
 # Install PHP & JS Dependencies
-RUN composer install --optimize-autoloader --ignore-platform-reqs && \
+RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs && \
     npm install && npm run build
-
-################################
-# Supervisor - Config
-################################
-COPY ./docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ################################
 # Laravel - App Setup

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Livewire;
 use Modules\User\app\Livewire\Settings\Profile;
 use Modules\User\App\Models\User;
@@ -12,12 +13,16 @@ test('profile page is displayed', function () {
 
 test('profile information can be updated', function () {
     $user = User::factory()->create();
+    $phone = fake()->phoneNumber();
 
     $this->actingAs($user);
 
     $response = Livewire::test(Profile::class)
-        ->set('name', 'Test User')
-        ->set('email', 'test@example.com')
+        ->set('form.first_name', 'Test')
+        ->set('form.last_name', 'User')
+        ->set('form.username', 'test')
+        ->set('form.phone', $phone)
+        ->set('form.email', 'test@example.com')
         ->call('updateProfileInformation');
 
     $response->assertHasNoErrors();
@@ -25,6 +30,10 @@ test('profile information can be updated', function () {
     $user->refresh();
 
     expect($user->name)->toEqual('Test User');
+    expect($user->first_name)->toEqual('Test');
+    expect($user->last_name)->toEqual('User');
+    expect($user->username)->toEqual('test');
+    expect($user->phone)->toEqual($phone);
     expect($user->email)->toEqual('test@example.com');
     expect($user->email_verified_at)->toBeNull();
 });
@@ -35,8 +44,10 @@ test('email verification status is unchanged when email address is unchanged', f
     $this->actingAs($user);
 
     $response = Livewire::test(Profile::class)
-        ->set('name', 'Test User')
-        ->set('email', $user->email)
+        ->set('form.first_name', 'Test')
+        ->set('form.last_name', 'User')
+        ->set('form.username', 'test')
+        ->set('form.email', $user->email)
         ->call('updateProfileInformation');
 
     $response->assertHasNoErrors();
@@ -58,7 +69,7 @@ test('user can delete their account', function () {
         ->assertRedirect('/');
 
     expect($user->fresh())->toBeNull();
-    expect(auth()->check())->toBeFalse();
+    expect(Auth::check())->toBeFalse();
 });
 
 test('correct password must be provided to delete account', function () {
