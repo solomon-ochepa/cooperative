@@ -17,12 +17,12 @@
 <!-- Scripts  -->
 @stack('js')
 
-<script src="{{ asset('assets/app') }}/js/lib/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('assets/js/lib/bootstrap.bundle.min.js') }}"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<script src="{{ asset('assets/app') }}/js/plugins/splide/splide.min.js"></script>
+<script src="{{ asset('assets/js/plugins/splide/splide.min.js') }}"></script>
 
-<script src="{{ asset('assets/app') }}/js/base.js"></script>
+<script src="{{ asset('assets/js/base.js') }}"></script>
 
 <script>
     // Add to Home with 5 seconds delay.

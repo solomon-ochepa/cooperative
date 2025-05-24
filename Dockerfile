@@ -9,7 +9,7 @@ ARG PHPIZE_DEPS="libpng-dev libjpeg-dev libfreetype6-dev libicu-dev libzip-dev v
 ARG PHP_EXTS="pdo pdo_mysql mysqli zip ftp"
 ARG PHP_PECL_EXTS=""
 ARG APP_ENV="local"
-ARG WWWGROUP
+ARG WWWGROUP=1000
 
 # Set Environment Variables
 ENV APP_ENV=${APP_ENV} \
@@ -57,9 +57,6 @@ RUN if [ "$APP_ENV" = "local-dev" ]; then \
 ################################
 # Dependencies
 ################################
-# Install Composer (PHP package manager)
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
 # Install PHP & JS Dependencies
 RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs && \
     npm install && npm run build
@@ -71,7 +68,6 @@ RUN php artisan key:generate && \
     php artisan storage:link --force && \
     php artisan view:clear && \
     php artisan vendor:publish --tag=telescope-assets --force && \
-    php artisan module:enable --all && \
     chown -R www-data:www-data /var/www/html/
 
 ################################

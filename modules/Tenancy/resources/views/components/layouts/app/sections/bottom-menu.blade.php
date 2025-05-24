@@ -19,4 +19,13 @@
             <strong>Settings</strong>
         </div>
     </x-a>
+
+    @can('dashboard', '')
+        <x-a can="admin.dashboard" route="admin.dashboard">
+            <div class="col">
+                <ion-icon name="settings-outline"></ion-icon>
+                <strong>Admin</strong>
+            </div>
+        </x-a>
+    @endcan
 </div>

@@ -1,8 +1,17 @@
+# Note: Run `docker build -t php-nodejs:8.3 -f Dockerfile.php-nodejs .` to build the base image
+
 # Base Image
 FROM php-nodejs:8.3
 
+# Define the build arguments with default values
+ARG APP_ENV="local"
+ARG WWWGROUP=1000
+
+# Set Environment Variables
+ENV APP_ENV=${APP_ENV}
+
 # Copy Source Code
-COPY . /var/www/html/
+COPY . .
 
 ################################
 # Configurations
@@ -19,9 +28,6 @@ RUN if [ "$APP_ENV" = "local-dev" ]; then \
 ################################
 # Dependencies
 ################################
-# Install Composer (PHP package manager)
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
 # Install PHP & JS Dependencies
 RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs && \
     npm install && npm run build
@@ -33,7 +39,6 @@ RUN php artisan key:generate && \
     php artisan storage:link --force && \
     php artisan view:clear && \
     php artisan vendor:publish --tag=telescope-assets --force && \
-    php artisan module:enable --all && \
     chown -R www-data:www-data /var/www/html/
 
 ################################

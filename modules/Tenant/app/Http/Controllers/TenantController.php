@@ -54,7 +54,11 @@ class TenantController extends Controller
 
         $token = tenancy()->impersonate($tenant, $user->id, $redirectUrl);
 
-        $url = Str::of(tenant_route($tenant->domain->url, 'tenant.impersonate', $token))->replace(env('APP_PORT').':', '')->toString();
+        $url = Str::of(tenant_route($tenant->domain->url, 'tenant.impersonate', $token))
+            ->replace(env('APP_PORT').':', '')
+            ->replace('https//', 'https://')
+            ->replace('http//', 'http://')
+            ->toString();
 
         return redirect($url);
     }

@@ -14,7 +14,8 @@ class TenantController extends Controller
      */
     public function home()
     {
-        return view('tenant::welcome');
+        // return view('tenant::welcome');
+        return redirect()->route('dashboard');
     }
 
     /**

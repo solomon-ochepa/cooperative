@@ -61,7 +61,7 @@
             <!-- Left col -->
             <div class="col-md-4 col-lg-4 col-xl-3">
                 <div class="sticky-leads-sidebar">
-                    <div class="lead-details-offcanvas bg-soft scrollbar phoenix-offcanvas phoenix-offcanvas-fixed"
+                    <div class="lead-details-offcanvas bg-soft scrollbar phoenix-offcanvas phoenix-offcanvas-fixed overflow-auto"
                         id="productFilterColumn">
                         <div class="d-flex justify-content-between align-items-center d-md-none mb-2">
                             <h3 class="mb-0">{{ $tenant->name }}</h3>
@@ -103,18 +103,6 @@
                                                 Registered: <i
                                                     class="text-muted">{{ $tenant->created_at->calendar() }}</i>
                                             </li>
-                                            <li class="list-group-item">
-                                                Database:
-                                                @if ($tenant->database_exists())
-                                                    <i class="text-muted">{{ $tenant->database()->getName() }}</i>
-                                                @else
-                                                    <button class="btn btn-sm btn-outline-primary"
-                                                        data-bs-toggle="tooltip" title="Create"
-                                                        wire:click='create_database'>
-                                                        <i class="fas fa-plus-circle"></i>
-                                                    </button>
-                                                @endif
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -134,12 +122,22 @@
                     <ul class="nav nav-underline deal-details scrollbar w-100 mb-6 flex-nowrap pb-1" id="myTab"
                         role="tablist" style="overflow-y: hidden;">
                         <li class="nav-item me-2 text-nowrap" role="presentation">
-                            <a aria-controls="tab-domains" class="nav-link" data-bs-toggle="tab" href="#tab-domains"
-                                id="domains-tab" role="tab" tabindex="-1">
+                            <a aria-controls="tab-database" aria-selected="true" class="nav-link active"
+                                data-bs-toggle="tab" href="#tab-database" id="database-tab" role="tab"
+                                tabindex="-1">
+                                <i class="fas fa-database tab-icon-color me-1"></i>
+                                {{ __('Database') }}
+                            </a>
+                        </li>
+
+                        <li class="nav-item me-2 text-nowrap" role="presentation">
+                            <a aria-controls="tab-domains" aria-selected="false" class="nav-link" data-bs-toggle="tab"
+                                href="#tab-domains" id="domains-tab" role="tab" tabindex="-1">
                                 <i class="fas fa-globe tab-icon-color me-1"></i>
                                 {{ __('Domains') }}
                             </a>
                         </li>
+
                         <li class="nav-item me-2 text-nowrap" role="presentation">
                             <a aria-controls="tab-invoices" aria-selected="false" class="nav-link" data-bs-toggle="tab"
                                 href="#tab-invoices" id="invoices-tab" role="tab" tabindex="-1">
@@ -150,14 +148,57 @@
                     </ul>
 
                     <div class="tab-content" id="myTabContent">
-                        {{-- Invoices --}}
-                        <div aria-labelledby="invoices-tab" class="tab-pane fade" id="tab-invoices" role="tabpanel">
-                            ... {{ __('Invoices') }}
+                        {{-- Database --}}
+                        <div aria-labelledby="database-tab" class="tab-pane fade active show" id="tab-database"
+                            role="tabpanel">
+                            <ul class="list-group -white-space-nowrap list-group-flush fs--1 text-start align-middle">
+                                <li class="list-group-item">
+                                    {{ __('Database') }}:
+                                    <i class="text-muted">{{ $tenant->database()->getName() }}</i>
+                                </li>
+                                @if ($tenant->database_exists())
+                                    <li class="list-group-item">
+                                        {{ __('Migrate') }}
+                                        <button class="btn btn-sm" data-bs-toggle="tooltip" title="Migrate"
+                                            type="button" wire:click='migrate'>
+                                            <i class="fas fa-paper-plane fa-beat"></i>
+                                        </button>
+                                    </li>
+                                    <li class="list-group-item">
+                                        {{ __('Refresh Migrate') }}
+                                        <button class="btn btn-sm" data-bs-toggle="tooltip" title="Migrate"
+                                            type="button" wire:click='migrate_refresh'>
+                                            <i class="fas fa-paper-plane fa-beat"></i>
+                                        </button>
+                                    </li>
+                                    <li class="list-group-item">
+                                        {{ __('Rollback Migrate') }}
+                                        <button class="btn btn-sm" data-bs-toggle="tooltip" title="Migrate"
+                                            type="button" wire:click='rollback'>
+                                            <i class="fas fa-paper-plane fa-beat"></i>
+                                        </button>
+                                    </li>
+                                    <li class="list-group-item">
+                                        {{ __('Seed') }}
+                                        <button class="btn btn-sm" data-bs-toggle="tooltip" title="Seed"
+                                            type="button" wire:click='seed'>
+                                            <i class="fas fa-paper-plane fa-beat"></i>
+                                        </button>
+                                    </li>
+                                @else
+                                    <li class="list-group-item">
+                                        {{ __('Create') }}
+                                        <button class="btn btn-sm" data-bs-toggle="tooltip" title="Create"
+                                            type="button" wire:click='create_database'>
+                                            <i class="fas fa-paper-plane fa-beat"></i>
+                                        </button>
+                                    </li>
+                                @endif
+                            </ul>
                         </div>
 
                         {{-- Domains --}}
-                        <div aria-labelledby="domains-tab" class="tab-pane fade active show" id="tab-domains"
-                            role="tabpanel">
+                        <div aria-labelledby="domains-tab" class="tab-pane fade" id="tab-domains" role="tabpanel">
                             <ul class="list-group white-space-nowrap list-group-flush fs--1 text-start align-middle">
                                 @foreach ($tenant->domains as $domain)
                                     <li class="list-group-item">
@@ -167,6 +208,11 @@
                                     </li>
                                 @endforeach
                             </ul>
+                        </div>
+
+                        {{-- Invoices --}}
+                        <div aria-labelledby="invoices-tab" class="tab-pane fade" id="tab-invoices" role="tabpanel">
+                            ... {{ __('Invoices') }}
                         </div>
                     </div>
                 </div>

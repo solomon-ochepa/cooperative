@@ -1,3 +1,3 @@
-<x-layouts.guest :title="$title ?? null">
+<x-tenancy::layouts.guest.header :title="$title ?? null">
     {{ $slot }}
-</x-layouts.guest>
+</x-tenancy::layouts.guest.header>

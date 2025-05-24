@@ -4,8 +4,7 @@
         @slot('title', 'Payment Methods')
         @slot('back', '')
         @slot('links')
-            <x-header.notification-link />
-            <x-header.user-link />
+            <x-user::header.links />
         @endslot
     </x-layouts.app.sections.header>
 
@@ -119,7 +118,7 @@
                 <a class="item" data-bs-target="#payment" data-bs-toggle="modal" href="#">
                     <div class="detail">
                         <img alt="img" class="image-block imaged w48"
-                            src="{{ asset('assets/app') }}/img/sample/brand/1.jpg">
+                            src="{{ asset('assets/img/sample/brand/1.jpg') }}">
                         <div>
                             <strong>No records found!</strong>
                             <p>Click to create a new payment method</p>

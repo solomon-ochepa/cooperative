@@ -5,8 +5,7 @@ services:
       dockerfile: Dockerfile.local
       args:
         WWWGROUP: '${WWWGROUP:-1000}'
-    image: okfice
-    container_name: okfice_app
+    container_name: oki_technologies_app
     ports:
       - '${APP_PORT:-80}:80'
     environment:
@@ -21,7 +20,7 @@ services:
 
   mysql:
     image: mysql
-    container_name: okfice_mysql
+    container_name: oki_technologies_mysql
     ports:
       - '${FORWARD_DB_PORT:-3306}:3306'
     environment:
@@ -45,7 +44,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin
-    container_name: okfice_phpmyadmin
+    container_name: oki_technologies_phpmyadmin
     links:
       - mysql
     environment:
@@ -59,7 +58,7 @@ services:
 
   redis:
     image: 'redis:alpine'
-    container_name: okfice_redis
+    container_name: oki_technologies_redis
     ports:
       - '${FORWARD_REDIS_PORT:-6379}:6379'
     volumes:

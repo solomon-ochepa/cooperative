@@ -13,10 +13,12 @@ class UserPermissionSeeder extends Seeder
     public function run(): void
     {
         $permissions = [
+            'users',
             'users.create',
             'users.index',
             'users.show',
             'users.edit',
+            'users.delete',
             'users.delete.trash',
             'users.delete.restore',
             'users.delete.permanent',

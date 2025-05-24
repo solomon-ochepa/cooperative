@@ -2,7 +2,7 @@
 <html class="dark" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
     <head>
-        @include('tenancy::components.layouts.partials.head')
+        @include('tenancy::components.layouts.app.partials.head')
     </head>
 
     <body>
@@ -19,7 +19,7 @@
 
         <x-tenancy::layouts.app.sections.cookies />
 
-        @include('tenancy::components.layouts.partials.foot')
+        @include('tenancy::components.layouts.app.partials.foot')
     </body>
 
 </html>

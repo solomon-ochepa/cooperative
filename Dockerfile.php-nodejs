@@ -1,21 +1,18 @@
 # Note: Run `docker build -t php-nodejs:8.3 -f Dockerfile.php-nodejs .` to build the image
+
 # Base Image
-# FROM php:8.3-fpm
 FROM php:8.3-apache AS base
 
 # This helps keep our Dockerfiles DRY -> https://bit.ly/dry-code
 # You can see a list of required extensions for Laravel here: https://laravel.com/docs/11.x/deployment#server-requirements
 
 # Define the build arguments with default values
-ARG PHPIZE_DEPS="libpng-dev libjpeg-dev libfreetype6-dev libicu-dev libzip-dev vim git zip unzip jq"
+ARG PHPIZE_DEPS="libpng-dev libjpeg-dev libfreetype6-dev libicu-dev libzip-dev vim git zip unzip jq nodejs npm"
 ARG PHP_EXTS="pdo pdo_mysql mysqli zip ftp"
 ARG PHP_PECL_EXTS=""
-ARG APP_ENV="local"
-ARG WWWGROUP
 
 # Set Environment Variables
-ENV APP_ENV=${APP_ENV} \
-    COMPOSER_ALLOW_SUPERUSER=1 \
+ENV COMPOSER_ALLOW_SUPERUSER=1 \
     PATH="${PATH}:/var/www/html/vendor/bin"
 
 # Set Working Directory
@@ -37,9 +34,11 @@ RUN if [ -n "$PHP_PECL_EXTS" ]; then \
 
 # Install Node.js (includes npm)
 RUN curl -fsSL https://deb.nodesource.com/setup_current.x | bash - && \
-    apt-get install -y nodejs && \
-    npm install -g npm && \
+    npm install -g vite && \
     npm cache clean --force
+
+# Install Composer (PHP package manager)
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Clean up apt cache to reduce image size
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*

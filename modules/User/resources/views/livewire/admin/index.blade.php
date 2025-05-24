@@ -3,8 +3,7 @@
     <x-layouts.app.sections.header back='admin.dashboard' class="bg-primary text-light">
         @slot('title', __('Users Management'))
         @slot('links')
-            <x-header.notification-link />
-            <x-header.user-link />
+            <x-user::header.links />
         @endslot
     </x-layouts.app.sections.header>
 
@@ -43,7 +42,7 @@
                     <a href="{{ route('admin.user.show', ['user' => $user->id]) }}">
                         <div class="user-card">
                             <img alt="img" class="imaged w-100"
-                                src="{{ asset('assets/app') }}/img/sample/avatar/avatar2.jpg">
+                                src="{{ asset('assets/img/sample/avatar/avatar2.jpg') }}">
                             <strong>{{ $user->name }}</strong>
                         </div>
                     </a>
@@ -52,7 +51,7 @@
                 <div class="col-sm-2">
                     <div class="user-card">
                         <img alt="img" class="imaged w-100"
-                            src="{{ asset('assets/app') }}/img/sample/avatar/avatar2.jpg">
+                            src="{{ asset('assets/img/sample/avatar/avatar2.jpg') }}">
                         <strong>Jurrien</strong>
                     </div>
                 </div>
@@ -62,7 +61,7 @@
                 <a href="#">
                     <div class="user-card">
                         <img alt="img" class="imaged w-100"
-                            src="{{ asset('assets/app') }}/img/sample/avatar/avatar3.jpg">
+                            src="{{ asset('assets/img/sample/avatar/avatar3.jpg') }}">
                         <strong>Elwin</strong>
                     </div>
                 </a>
@@ -72,7 +71,7 @@
                 <a href="#">
                     <div class="user-card">
                         <img alt="img" class="imaged w-100"
-                            src="{{ asset('assets/app') }}/img/sample/avatar/avatar4.jpg">
+                            src="{{ asset('assets/img/sample/avatar/avatar4.jpg') }}">
                         <strong>Alma</strong>
                     </div>
                 </a>
@@ -82,7 +81,7 @@
                 <a href="#">
                     <div class="user-card">
                         <img alt="img" class="imaged w-100"
-                            src="{{ asset('assets/app') }}/img/sample/avatar/avatar5.jpg">
+                            src="{{ asset('assets/img/sample/avatar/avatar5.jpg') }}">
                         <strong>Justine</strong>
                     </div>
                 </a>
@@ -92,7 +91,7 @@
                 <a href="#">
                     <div class="user-card">
                         <img alt="img" class="imaged w-100"
-                            src="{{ asset('assets/app') }}/img/sample/avatar/avatar6.jpg">
+                            src="{{ asset('assets') }}/img/sample/avatar/avatar6.jpg">
                         <strong>Maria</strong>
                     </div>
                 </a>
@@ -102,7 +101,7 @@
                 <a href="#">
                     <div class="user-card">
                         <img alt="img" class="imaged w-100"
-                            src="{{ asset('assets/app') }}/img/sample/avatar/avatar7.jpg">
+                            src="{{ asset('assets') }}/img/sample/avatar/avatar7.jpg">
                         <strong>Pamela</strong>
                     </div>
                 </a>
@@ -112,7 +111,7 @@
                 <a href="#">
                     <div class="user-card">
                         <img alt="img" class="imaged w-100"
-                            src="{{ asset('assets/app') }}/img/sample/avatar/avatar8.jpg">
+                            src="{{ asset('assets') }}/img/sample/avatar/avatar8.jpg">
                         <strong>Neville</strong>
                     </div>
                 </a>
@@ -122,7 +121,7 @@
                 <a href="#">
                     <div class="user-card">
                         <img alt="img" class="imaged w-100"
-                            src="{{ asset('assets/app') }}/img/sample/avatar/avatar9.jpg">
+                            src="{{ asset('assets') }}/img/sample/avatar/avatar9.jpg">
                         <strong>Alex</strong>
                     </div>
                 </a>
@@ -132,7 +131,7 @@
                 <a href="#">
                     <div class="user-card">
                         <img alt="img" class="imaged w-100"
-                            src="{{ asset('assets/app') }}/img/sample/avatar/avatar10.jpg">
+                            src="{{ asset('assets') }}/img/sample/avatar/avatar10.jpg">
                         <strong>Stina</strong>
                     </div>
                 </a>

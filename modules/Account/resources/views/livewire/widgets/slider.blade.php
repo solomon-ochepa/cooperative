@@ -3,7 +3,7 @@
         <h2 class="title">
             {{ __('My Accounts') }}
             <button class="btn text-primary" type="button">
-                <i class="fa fa-plus-circle me-1" aria-hidden="true"></i> Add
+                <i aria-hidden="true" class="fa fa-plus-circle me-1"></i> Add
             </button>
         </h2>
         <a class="link" href="#">{{ __('View All') }}</a>
@@ -37,8 +37,10 @@
 
                                 <div class="balance">
                                     <span class="label">BALANCE</span>
-                                    <h1 class="title">{{ $account->currency ?? '' }}
-                                        {{ number_format($account->amount, 2) }}</h1>
+                                    <h1 class="title">
+                                        {{ $account->currency ?? '' }}
+                                        {{ number_format($account->amount, 2) }}
+                                    </h1>
                                 </div>
                                 <div class="in">
                                     <div class="card-number">

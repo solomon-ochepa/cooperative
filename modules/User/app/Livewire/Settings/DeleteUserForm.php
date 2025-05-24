@@ -10,6 +10,11 @@ class DeleteUserForm extends Component
 {
     public string $password = '';
 
+    public function render()
+    {
+        return view('user::livewire.settings.delete-user-form');
+    }
+
     /**
      * Delete the currently authenticated user.
      */

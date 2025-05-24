@@ -2,6 +2,7 @@
 
 namespace Modules\Tenant\app\Livewire\Admin;
 
+use Illuminate\Support\Facades\Artisan;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Modules\Tenant\App\Models\Tenant;
@@ -41,6 +42,49 @@ class Show extends Component
     public function create_database(): void
     {
         event(new TenantCreated($this->tenant));
+
+        session()->flash('status', 'Client updated!');
+    }
+
+    public function migrate(): void
+    {
+        tenancy()->initialize($this->tenant);
+        Artisan::call('tenants:migrate', [
+            '--force' => true,
+        ]);
+
+        session()->flash('status', 'Client updated!');
+    }
+
+    public function migrate_fresh(): void
+    {
+        tenancy()->initialize($this->tenant);
+        Artisan::call('tenants:migrate-fresh', [
+            '--force' => true,
+        ]);
+        tenancy()->end();
+
+        session()->flash('status', 'Client updated!');
+    }
+
+    public function migrate_rollback(): void
+    {
+        tenancy()->initialize($this->tenant);
+        Artisan::call('tenants:rollback', [
+            '--force' => true,
+        ]);
+        tenancy()->end();
+
+        session()->flash('status', 'Client updated!');
+    }
+
+    public function seed(): void
+    {
+        tenancy()->initialize($this->tenant);
+        Artisan::call('tenants:seed', [
+            '--force' => true,
+        ]);
+        tenancy()->end();
 
         session()->flash('status', 'Client updated!');
     }
